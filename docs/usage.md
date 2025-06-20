@@ -11,9 +11,10 @@ title: Project structure
 - [How to use](usage.md)
 
 # User Guidelines
-There are 2 ways to perform the analysis. 
+Run the tutorial to startup the R studio environment. There are 2 ways to perform the analysis on EDITO data lab.  
 - **Option A**: Using PLET Data (Red) 
 - **Option B**: Using EDITO Data (blue)
+
 
 ![Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQUvGo1Did9X1s5c-1ij6ncR05VUFoEwBvjtRm_AuGB5-ltQ8VdTQ1bwNI2bjXNubhwaW_mtb53OyWu/pub?w=1440&h=1080)
 
@@ -25,7 +26,7 @@ It is recommended to run the ```R.proj``` file (an R project file) before to ens
 
 ## Option A: Using PLET Data
 
-### Get Data
+### Step 1: Get Data
 Go to [https://www.dassh.ac.uk/lifeforms/](https://www.dassh.ac.uk/lifeforms/) and download your data.  
 Store the data in:
 
@@ -33,7 +34,7 @@ Store the data in:
 /data/lifeform.csv
 ```
 
-### Run Analysis
+### Step 2: Run Analysis
 Run 
 ```PH1-FW5_indicator_script_v2.Rmd``` on ```/data/lifeform.csv``` and view the results in ```/output```.
 
@@ -42,12 +43,10 @@ Run
 ## Option B: Using EDITO Data
 
 This includes several steps:
-- Step 1: Query the occurrence data parquet
-- Step 2: Make monthly aggregates
-- Step 3: Run PH1 analysis
+- Step 1 :Extract and format data from the EDITO data lake
+- Step 2: Run PH1 analysis
 
-### Step 1: Query the occurrence data parquet
-Extract and format data from the EDITO data lake.  
+### Step 1: extract and format data from the EDITO data lake
 As an example, a pipeline for the EurOBIS dataset (ID: 4687) is provided.
 
 Run ```get_edito_dasid_4687_SCHPM1_holo_mero.R``` to extract and format this data. It will be stored in:
@@ -55,6 +54,8 @@ Run ```get_edito_dasid_4687_SCHPM1_holo_mero.R``` to extract and format this dat
 ```
 ../data/PH1_edito_test.csv
 ```
+
+#### 1.1: Query the occurrence data parquet
 
 This pipeline performs several reusable steps:
 
@@ -122,7 +123,7 @@ With  <br>
 Example of OSPAR region filter:
 ![Diagram](https://docs.google.com/drawings/d/e/2PACX-1vQ53hBADvUhgCfz51SNCazAc5AE-7EgPS7FNirDHsGPiFDVUEJIGgY5tgl6A8d2vjsIwQi8TdC_YgoH/pub?w=1440&h=1080)
 
-### Step 2: Make monthly aggregates
+#### 1.2: Make monthly aggregates
 
 Once you have the occurrence data, it needs to be formatted into **monthly aggregated lifeform groups**.  
 If you intend to write your own pipeline or bring your own data, this section explains the expected format.
@@ -159,7 +160,7 @@ Example raw
 "2017-07","diatom",8265.58566611672,4
 ```
 
-### Step 3: Run PH1 analysis
+### Step 2: Run PH1 analysis
 Run ```PH1_edito.R``` on ```EDITO_dasid_4687_SCHPM1_holo_mero.csv``` and view results in ```../output_edito/```
 
 ----------------
